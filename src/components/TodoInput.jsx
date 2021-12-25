@@ -28,7 +28,7 @@ export default function TodoInput() {
       <button type="button" className="todo-button" onClick={handleKeyDown} />
       <input
         type="text"
-        placeholder="Create a new todo..."
+        placeholder="Create a new to do..."
         value={newTodo}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}

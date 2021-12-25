@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <div className="header-wrapper">
-      <h1>TODO</h1>
+      <h1>TO DO</h1>
       {darkMode ? (
         <img src={iconSun} alt="icon sun" onClick={handleDarkMode} />
       ) : (
