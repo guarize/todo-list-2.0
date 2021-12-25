@@ -76,74 +76,79 @@ export default function TodoList() {
   };
 
   return (
-    <div
-      className={
-        darkMode ? 'list-wrapper list-dark' : 'list-wrapper list-light'
-      }
-    >
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="todo-list">
-          {(provided) => (
-            <ul {...provided.droppableProps} ref={provided.innerRef}>
-              {(displayedList.length === 0 ? todoList : displayedList).map(
-                (todo, i) => (
-                  <Draggable key={todo} draggableId={todo} index={i}>
-                    {(provided) => (
-                      <div
-                        className={
-                          darkMode
-                            ? 'todo-container todo-container-dark'
-                            : 'todo-container todo-container-light'
-                        }
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        <button
-                          type="button"
-                          className={
-                            completedTasks.includes(todo)
-                              ? 'todo-button completed-task'
-                              : 'todo-button'
-                          }
-                          value={todo}
-                          onClick={handleTaskClick}
-                        />
-                        <li>{todo}</li>
-                      </div>
-                    )}
-                  </Draggable>
-                ),
-              )}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+    <>
       <div
         className={
-          darkMode
-            ? 'list-options list-options-dark'
-            : 'list-options list-options-light'
+          darkMode ? 'list-wrapper list-dark' : 'list-wrapper list-light'
         }
       >
-        <span>{`${todoList.length - completedTasks.length} items left`}</span>
-        <div className="sort-options">
-          {filterButtons.map(({ name, value, selected }) => (
-            <p
-              value={value}
-              key={value}
-              className={selected ? 'selected-filter' : ''}
-              onClick={() => handleFilterOptions(value)}
-            >
-              {name}
-            </p>
-          ))}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="todo-list">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {(displayedList.length === 0 ? todoList : displayedList).map(
+                  (todo, i) => (
+                    <Draggable key={todo} draggableId={todo} index={i}>
+                      {(provided) => (
+                        <div
+                          className={
+                            darkMode
+                              ? 'todo-container todo-container-dark'
+                              : 'todo-container todo-container-light'
+                          }
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          ref={provided.innerRef}
+                        >
+                          <button
+                            type="button"
+                            className={
+                              completedTasks.includes(todo)
+                                ? 'todo-button completed-task'
+                                : 'todo-button'
+                            }
+                            value={todo}
+                            onClick={handleTaskClick}
+                          />
+                          <li>{todo}</li>
+                        </div>
+                      )}
+                    </Draggable>
+                  ),
+                )}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+        <div
+          className={
+            darkMode
+              ? 'list-options list-options-dark'
+              : 'list-options list-options-light'
+          }
+        >
+          <span>{`${todoList.length - completedTasks.length} items left`}</span>
+          <div className="sort-options">
+            {filterButtons.map(({ name, value, selected }) => (
+              <p
+                value={value}
+                key={value}
+                className={selected ? 'selected-filter' : ''}
+                onClick={() => handleFilterOptions(value)}
+              >
+                {name}
+              </p>
+            ))}
+          </div>
+          <p onClick={handleClearCompleted} className="clear-completed">
+            Clear Completed
+          </p>
         </div>
-        <p onClick={handleClearCompleted} className="clear-completed">
-          Clear Completed
-        </p>
       </div>
-    </div>
+      <div >
+        <p className="drag-n-drop-msg">Drag and drop to reorder list</p>
+      </div>
+    </>
   );
 }
