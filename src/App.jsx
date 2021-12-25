@@ -18,7 +18,7 @@ function App() {
     } else {
       setTodoList(savedList);
     }
-  }, []);
+  }, [setTodoList]);
 
   return (
     <main className={darkMode ? 'app-container-dark' : 'app-container-light'}>

@@ -25,6 +25,7 @@ body {
   justify-content: center;
   margin-top: 8%;
   z-index: 1;
+  margin: 0 auto;
 }
 
 .main-container {

@@ -23,4 +23,8 @@
     width: 90%;
     margin-top: 10px;
   }
+
+  .header-wrapper h1 {
+    font-size: 37px;
+  }
 }

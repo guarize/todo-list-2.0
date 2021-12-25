@@ -41,5 +41,9 @@
   .input-wrapper {
     width: 100%;
   }
+
+  .input-wrapper input {
+    width: 100%;
+  }
 }
 
