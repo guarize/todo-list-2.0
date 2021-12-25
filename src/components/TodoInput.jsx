@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import TodoContext from '../contexts/TodoContext';
+import { saveToLocalStorage } from '../services';
 import '../styles/TodoInput.css';
 
 export default function TodoInput() {
@@ -12,6 +13,7 @@ export default function TodoInput() {
 
   const handleKeyDown = ({ key, type }) => {
     if (newTodo && (key === 'Enter' || type === 'click')) {
+      saveToLocalStorage([...todoList, newTodo]);
       setTodoList([...todoList, newTodo]);
       setNewTodo('');
     }
