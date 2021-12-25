@@ -1,0 +1,26 @@
+.header-wrapper {
+  display: flex;
+  width: 550px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-wrapper img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.header-wrapper h1 {
+  font-size: 43px;
+  color: hsl(234, 39%, 85%);
+  letter-spacing: 12px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .header-wrapper {
+    width: 90%;
+    margin-top: 10px;
+  }
+}
