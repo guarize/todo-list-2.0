@@ -3,6 +3,7 @@ import TodoContext from '../contexts/TodoContext';
 
 export default function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [darkMode, setDarkMode] = useState(true);
 
@@ -13,6 +14,8 @@ export default function TodoProvider({ children }) {
     setNewTodo,
     darkMode,
     setDarkMode,
+    completedTasks,
+    setCompletedTasks,
   };
 
   return (

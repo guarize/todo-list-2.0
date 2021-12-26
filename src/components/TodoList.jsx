@@ -1,23 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import TodoContext from '../contexts/TodoContext';
 import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd';
+import { saveToLocalStorage, saveCompletedToLocalStorage } from '../services';
 import '../styles/TodoList.css';
 
 export default function TodoList() {
-  const [completedTasks, setCompletedTasks] = useState([]);
   const [filterButtons, setFilterButtons] = useState([
     { name: 'All', value: 'all', selected: true },
     { name: 'Active', value: 'active', selected: false },
     { name: 'Completed', value: 'completed', selected: false },
   ]);
 
-  const { todoList, setTodoList, darkMode } = useContext(TodoContext);
+  const { todoList, setTodoList, darkMode, completedTasks, setCompletedTasks } =
+    useContext(TodoContext);
   const [displayedList, setDisplayed] = useState([]);
 
   useEffect(() => {
     setDisplayedTasks('all');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todoList]);
+
+  const getWindowWidth = () => {
+    const { innerWidth: width } = window;
+    return width;
+  };
 
   const handleFilterOptions = (value) => {
     const updatedFilterButtons = filterButtons.map((option) => {
@@ -48,8 +54,10 @@ export default function TodoList() {
     if (completedTasks.includes(value)) {
       const newCompletedTasks = completedTasks.filter(() => !value);
       setCompletedTasks(newCompletedTasks);
+      saveCompletedToLocalStorage(newCompletedTasks);
     } else {
       setCompletedTasks([...completedTasks, value]);
+      saveCompletedToLocalStorage([...completedTasks, value]);
     }
   };
 
@@ -73,6 +81,7 @@ export default function TodoList() {
     reorderedTodoList.splice(source.index, 1);
     reorderedTodoList.splice(destination.index, 0, task);
     setTodoList(reorderedTodoList);
+    saveToLocalStorage(reorderedTodoList);
   };
 
   return (
@@ -117,6 +126,19 @@ export default function TodoList() {
                   ),
                 )}
                 {provided.placeholder}
+                {getWindowWidth() <= 768 && (
+                  <div className="list-option-mobile">
+                    <span className="list-options-info">{`${
+                      todoList.length - completedTasks.length
+                    } items left`}</span>
+                    <p
+                      onClick={handleClearCompleted}
+                      className="list-options-info"
+                    >
+                      Clear Completed
+                    </p>
+                  </div>
+                )}
               </ul>
             )}
           </Droppable>
@@ -128,7 +150,9 @@ export default function TodoList() {
               : 'list-options list-options-light'
           }
         >
-          <span>{`${todoList.length - completedTasks.length} items left`}</span>
+          <span className="list-options-info">{`${
+            todoList.length - completedTasks.length
+          } items left`}</span>
           <div className="sort-options">
             {filterButtons.map(({ name, value, selected }) => (
               <p
@@ -141,12 +165,15 @@ export default function TodoList() {
               </p>
             ))}
           </div>
-          <p onClick={handleClearCompleted} className="clear-completed">
+          <p
+            onClick={handleClearCompleted}
+            className="clear-completed list-options-info"
+          >
             Clear Completed
           </p>
         </div>
       </div>
-      <div >
+      <div>
         <p className="drag-n-drop-msg">Drag and drop to reorder list</p>
       </div>
     </>

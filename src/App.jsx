@@ -5,20 +5,32 @@ import backgroundDark from './images/bg-desktop-dark.jpg';
 import backgroundLight from './images/bg-desktop-light.jpg';
 import './App.css';
 import { useContext, useEffect } from 'react';
-import { getFromLocalStorage, saveToLocalStorage } from './services';
+import {
+  getFromLocalStorage,
+  saveToLocalStorage,
+  getCompletedFromLocalStorage,
+  saveCompletedToLocalStorage,
+} from './services';
 import TodoContext from './contexts/TodoContext';
 
 function App() {
-  const { darkMode, setTodoList } = useContext(TodoContext);
+  const { darkMode, setTodoList, setCompletedTasks } = useContext(TodoContext);
 
   useEffect(() => {
     const savedList = getFromLocalStorage();
+    const savedCompletedTasks = getCompletedFromLocalStorage();
     if (!savedList) {
       saveToLocalStorage([]);
     } else {
       setTodoList(savedList);
     }
-  }, [setTodoList]);
+
+    if (!savedCompletedTasks) {
+      saveCompletedToLocalStorage([]);
+    } else {
+      setCompletedTasks(savedCompletedTasks);
+    }
+  }, [setCompletedTasks, setTodoList]);
 
   return (
     <main className={darkMode ? 'app-container-dark' : 'app-container-light'}>
