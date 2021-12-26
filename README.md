@@ -1,6 +1,6 @@
 # Frontend Mentor - Todo app solution
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -12,6 +12,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
     - [Links](#links)
     - [Built with](#built-with)
   - [Author](#author)
+
 ## Overview
 
 ### The challenge
@@ -34,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here]()
+- Live Site URL: [Todo List App](https://todo-list-guarize.vercel.app/)
 
 ### Built with
 
