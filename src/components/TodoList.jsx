@@ -146,7 +146,7 @@ export default function TodoList() {
                   <div className="list-option-mobile">
                     <span className="list-options-info">{`${
                       todoList.length - completedTasks.length
-                    } items left`}</span>
+                    } item(s) left`}</span>
                     <p
                       onClick={handleClearCompleted}
                       className="list-options-info"
@@ -168,7 +168,7 @@ export default function TodoList() {
         >
           <span className="list-options-info">{`${
             todoList.length - completedTasks.length
-          } items left`}</span>
+          } item(s) left`}</span>
           <div className="sort-options">
             {filterButtons.map(({ name, value, selected }) => (
               <p
