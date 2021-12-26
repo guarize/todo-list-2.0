@@ -74,9 +74,25 @@ export default function TodoList() {
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
-    if (!destination || destination.index === source.index) return;
 
     const task = todoList.find((todo) => todo === draggableId);
+
+    if (!destination) {
+      const removedTaskList = todoList.filter((todo) => todo !== task);
+      if (completedTasks.includes(task)) {
+        const removedCompletedTaskList = completedTasks.filter(
+          (todo) => todo !== task,
+        );
+        setCompletedTasks(removedCompletedTaskList);
+        saveCompletedToLocalStorage(removedCompletedTaskList);
+      }
+      setTodoList(removedTaskList);
+      saveToLocalStorage(removedTaskList);
+      return;
+    }
+
+    if (destination.index === source.index) return;
+
     const reorderedTodoList = [...todoList];
     reorderedTodoList.splice(source.index, 1);
     reorderedTodoList.splice(destination.index, 0, task);
