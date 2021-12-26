@@ -96,5 +96,10 @@ body {
     width: 100vw;
     height: 400px;
   }
+
+  .todo-button:hover {
+    background-image: none;
+    cursor: pointer;
+  }
 }
 
