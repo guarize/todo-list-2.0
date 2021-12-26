@@ -68,8 +68,12 @@ export default function TodoList() {
   };
 
   const handleClearCompleted = () => {
-    setTodoList(getActiveTasks());
+    const activeTasks = getActiveTasks();
+
+    setTodoList(activeTasks);
+    saveToLocalStorage(activeTasks);
     setCompletedTasks([]);
+    saveCompletedToLocalStorage([]);
   };
 
   const onDragEnd = (result) => {
