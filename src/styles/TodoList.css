@@ -71,13 +71,6 @@
   justify-content: space-between;
 }
 
-.sort-options {
-  display: flex;
-  width: 170px;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .drag-n-drop-msg {
   color: hsl(234, 11%, 52%);
   margin-top: 50px;
