@@ -45,15 +45,6 @@ body {
   border: 2px solid hsl(233, 14%, 35%);
 }
 
-.todo-button:hover {
-  background-image: linear-gradient(
-    0deg,
-    rgba(71, 218, 255, 1) 0%,
-    rgba(192, 88, 243, 1) 100%
-  );
-  cursor: pointer;
-}
-
 .completed-task {
   background-image: linear-gradient(
     0deg,
@@ -85,6 +76,17 @@ body {
   z-index: 0;
 }
 
+@media (hover: hover) {
+  .todo-button:hover {
+    background-image: linear-gradient(
+      0deg,
+      rgba(71, 218, 255, 1) 0%,
+      rgba(192, 88, 243, 1) 100%
+    );
+    cursor: pointer;
+  }
+}
+
 @media only screen and (min-width: 1500px) {
   .todo-wrapper {
     margin-top: 10%;
@@ -96,10 +98,4 @@ body {
     width: 100vw;
     height: 400px;
   }
-
-  .todo-button:hover {
-    background-image: none;
-    cursor: pointer;
-  }
 }
-
