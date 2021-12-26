@@ -52,7 +52,7 @@ export default function TodoList() {
 
   const handleTaskClick = ({ target: { value } }) => {
     if (completedTasks.includes(value)) {
-      const newCompletedTasks = completedTasks.filter(() => !value);
+      const newCompletedTasks = completedTasks.filter((task) => task !== value);
       setCompletedTasks(newCompletedTasks);
       saveCompletedToLocalStorage(newCompletedTasks);
     } else {
