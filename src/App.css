@@ -8,6 +8,7 @@
 body {
   background-image: url('./images/bg-desktop-dark.jpg') center fixed;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .app-container-dark {
