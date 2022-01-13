@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import TodoContext from '../contexts/TodoContext';
 import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd';
 import { saveToLocalStorage, saveCompletedToLocalStorage } from '../services';
+import { useMediaQuery } from 'react-responsive'
 import '../styles/TodoList.css';
 
 export default function TodoList() {
@@ -20,10 +21,7 @@ export default function TodoList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todoList]);
 
-  const getWindowWidth = () => {
-    const { innerWidth: width } = window;
-    return width;
-  };
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   const handleFilterOptions = (value) => {
     const updatedFilterButtons = filterButtons.map((option) => {
@@ -146,7 +144,7 @@ export default function TodoList() {
                   ),
                 )}
                 {provided.placeholder}
-                {getWindowWidth() <= 768 && (
+                {isMobile &&  (
                   <div className="list-option-mobile">
                     <span className="list-options-info">{`${
                       todoList.length - completedTasks.length
